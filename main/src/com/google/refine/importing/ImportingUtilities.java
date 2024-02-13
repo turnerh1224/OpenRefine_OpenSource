@@ -276,7 +276,9 @@ public class ImportingUtilities {
                 } else if (name.equals("download")) {
                     String urlString = Streams.asString(stream);
                     URL url = new URL(urlString);
-
+                    if (urlString.endsWith(" ")) {
+                        urlString = urlString.substring(0, urlString.length() - 1);
+                    }
                     if (!allowedProtocols.contains(url.getProtocol().toLowerCase())) {
                         throw new IOException("Unsupported protocol: " + url.getProtocol());
                     }
